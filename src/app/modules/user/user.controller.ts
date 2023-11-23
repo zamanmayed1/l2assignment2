@@ -49,7 +49,7 @@ const getUserController = async (req: Request, res: Response) => {
             data: result,
         });
     } catch (err) {
-        console.error(err);
+
         res.status(500).json({
             success: false,
             message: 'Internal server error',
@@ -101,14 +101,26 @@ const updateUserByUserIdController = async (req: Request, res: Response) => {
         const userId = req.params.userId;
         const userData = req.body;
         const result = await UserService.updateAUserByUserIdService(userId, userData);
+        
+        if (result === null) {
+            res.status(200).json({
+                "success": false,
+                "message": "User not found",
+                "error": {
+                    "code": 404,
+                    "description": "User not found!"
+                }
+            });
+        } else {
+            const { password, ...withouPass } = result._doc
+            res.status(200).json({
+                success: true,
+                message: 'User updated successfully!',
+                data: withouPass,
+            });
+        }
 
-        res.status(200).json({
-            success: true,
-            message: 'User updated successfully!',
-            data: result,
-        });
     } catch (err) {
-        console.error(err);
         res.status(500).json({
             success: false,
             message: 'Internal server error',
@@ -132,7 +144,7 @@ const deleteUserController = async (req: Request, res: Response) => {
             data: result,
         });
     } catch (err) {
-        console.error(err);
+
         res.status(500).json({
             success: false,
             message: 'Internal server error',

@@ -39,7 +39,7 @@ const getAUserByUserIdService = async (userId: string) => {
 // 4. Update user information
 const updateAUserByUserIdService = async (userId: string, userData: User) => {
   try {
-    const result = await UserModel.updateOne({ userId: userId }, { $set: userData });
+    const result = await UserModel.findOneAndUpdate({ userId: userId }, { $set: userData },{ new: true });
     return result;
   } catch (error) {
     console.error(error);
