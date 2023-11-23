@@ -4,11 +4,13 @@ const router = express.Router();
 
 // 1. Create a new user
 router.post('/', UserContollers.createUserController)
+
 // 2. Retrieve a list of all users
 router.get('/', UserContollers.getUserController)
 
 //3. Retrieve a specific user by ID
 router.get('/:userId', UserContollers.getUserByUserIdController)
+
 //4. Update user information
 router.patch('/:userId', (req, res) => {
     res.json({
@@ -17,14 +19,9 @@ router.patch('/:userId', (req, res) => {
         "data": {}
     })
 })
+
 //5. Delete a user
-router.delete('/:userId', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "User deleted successfully!",
-        "data": {}
-    })
-})
+router.delete('/:userId', UserContollers.deleteUserController)
 //6. Add New Product in Order (Bonus)
 router.patch('/:userId/orders', (req, res) => {
     res.json({

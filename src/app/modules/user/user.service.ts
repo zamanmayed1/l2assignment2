@@ -28,8 +28,22 @@ const getAUserByUserIdService = async (userId: string)  => {
     }
 };
 
+const deleteAUserService = async (userId: string)  => {
+    try {
+        await UserModel.deleteOne({userId : userId})
+        return {
+            "success": true,
+            "message": "User deleted successfully!",
+            "data" : null
+        };
+    } catch (error) {
+        return error;
+    }
+};
+
 export const UserService = {
     createUserService,
     getallUserService,
-    getAUserByUserIdService
+    getAUserByUserIdService,
+    deleteAUserService
 };
