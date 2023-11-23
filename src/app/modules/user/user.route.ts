@@ -5,13 +5,7 @@ const router = express.Router();
 // 1. Create a new user
 router.post('/', UserContollers.createUserController)
 // 2. Retrieve a list of all users
-router.get('/', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "Users fetched successfully!",
-        "data": {}
-    })
-})
+router.get('/', UserContollers.getUserController)
 
 //3. Retrieve a specific user by ID
 router.get('/:userId', (req, res) => {

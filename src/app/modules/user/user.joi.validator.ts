@@ -9,7 +9,7 @@ const userValidatorSchema = Joi.object({
         lastName: Joi.string().required(),
     }).required(),
     age: Joi.number().required(),
-    email: Joi.string().required(),
+    email: Joi.string().email().required(),
     isActive: Joi.boolean().required(),
     hobbies: Joi.array().items(Joi.string()),
     address: Joi.object({

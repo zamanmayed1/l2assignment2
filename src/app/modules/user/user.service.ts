@@ -11,6 +11,16 @@ const createUserService = async (userData: User) => {
     }
 };
 
+const getallUserService = async () => {
+    try {
+        const result = await UserModel.find({}).select({_id: 0,username: 1,fullName: 1, age: 1, email : 1, address: 1})
+        return result;
+    } catch (error) {
+        return error;
+    }
+};
+
 export const UserService = {
-    createUserService
+    createUserService,
+    getallUserService
 };
