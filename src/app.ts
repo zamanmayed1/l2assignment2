@@ -7,8 +7,10 @@ app.use(cors());
 
 app.use('/api/users', UserRoute);
 app.get('/', (req: Request, res: Response) => {
-  const helloWorld = 'Hello World';
-  res.send(helloWorld);
+  res.json({
+    "status" : true,
+    "message": "This server is Running on vercel."
+  });
 });
 
 export default app;
