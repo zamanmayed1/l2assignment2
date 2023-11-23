@@ -51,9 +51,34 @@ const getUserController =  async (req: Request, res: Response) => {
     }
 };
 
+// 3. Retrieve a specific user by ID
+
+const getUserByUserIdController =  async (req: Request, res: Response) => {
+    try {
+        const userId = req.params.userId
+        const result = await UserService.getAUserByUserIdService(userId);
+        res.status(200).json({
+            "success": true,
+            "message": "User fetched successfully!",
+            "data": result,
+        });
+
+    } catch (err) {
+        res.status(404).json({
+            "success": false,
+            "message": "User not Created",
+            "error": {
+                "code": 404,
+                "description": "User not Created!"
+            }
+        });
+    }
+};
+
 
 
 export const UserContollers = {
     createUserController,
-    getUserController
+    getUserController,
+    getUserByUserIdController
 };

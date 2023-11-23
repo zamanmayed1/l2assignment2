@@ -8,13 +8,7 @@ router.post('/', UserContollers.createUserController)
 router.get('/', UserContollers.getUserController)
 
 //3. Retrieve a specific user by ID
-router.get('/:userId', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "User fetched successfully!",
-        "data": {}
-    })
-})
+router.get('/:userId', UserContollers.getUserByUserIdController)
 //4. Update user information
 router.patch('/:userId', (req, res) => {
     res.json({

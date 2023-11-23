@@ -19,8 +19,17 @@ const getallUserService = async () => {
         return error;
     }
 };
+const getAUserByUserIdService = async (userId: string)  => {
+    try {
+        const result = await UserModel.find({userId : userId}).select({_id: 0, password : 0})
+        return result;
+    } catch (error) {
+        return error;
+    }
+};
 
 export const UserService = {
     createUserService,
-    getallUserService
+    getallUserService,
+    getAUserByUserIdService
 };
