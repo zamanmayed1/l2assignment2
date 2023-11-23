@@ -1,14 +1,9 @@
 import express from "express";
+import { UserContollers } from "./user.controller";
 const router = express.Router();
 
 // 1. Create a new user
-router.post('/', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "User created successfully!",
-        "data": {}
-    })
-})
+router.post('/', UserContollers.createUserController)
 // 2. Retrieve a list of all users
 router.get('/', (req, res) => {
     res.json({
