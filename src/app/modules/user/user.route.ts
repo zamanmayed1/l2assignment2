@@ -1,53 +1,54 @@
-import express from "express";
-import { UserContollers } from "./user.controller";
+import express from 'express';
+import { UserControllers } from './user.controller';
+
 const router = express.Router();
 
+// User Routes
+
 // 1. Create a new user
-router.post('/', UserContollers.createUserController)
+router.post('/', UserControllers.createUserController);
 
 // 2. Retrieve a list of all users
-router.get('/', UserContollers.getUserController)
+router.get('/', UserControllers.getUserController);
 
-//3. Retrieve a specific user by ID
-router.get('/:userId', UserContollers.getUserByUserIdController)
+// 3. Retrieve a specific user by ID
+router.get('/:userId', UserControllers.getUserByUserIdController);
 
-//4. Update user information
-router.patch('/:userId', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "User updated successfully!",
-        "data": {}
-    })
-})
+// 4. Update user information
+router.put('/:userId', UserControllers.updateUserByUserIdController);
 
-//5. Delete a user
-router.delete('/:userId', UserContollers.deleteUserController)
-//6. Add New Product in Order (Bonus)
+// 5. Delete a user
+router.delete('/:userId', UserControllers.deleteUserController);
+
+// Order Routes (Bonus)
+
+// 6. Add New Product in Order
 router.patch('/:userId/orders', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "Order created successfully!",
-        "data": {}
-    })
-})
-//7. Retrieve all orders for a specific user
+  res.json({
+    success: true,
+    message: 'Order created successfully!',
+    data: {},
+  });
+});
+
+// 7. Retrieve all orders for a specific user
 router.get('/:userId/orders', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "Order fetched successfully!",
-        "data": {}
-    })
-})
-//8. Calculate Total Price of Orders for a Specific User
+  res.json({
+    success: true,
+    message: 'Order fetched successfully!',
+    data: {},
+  });
+});
+
+// 8. Calculate Total Price of Orders for a Specific User
 router.get('/:userId/orders/total-price', (req, res) => {
-    res.json({
-        "success": true,
-        "message": "Total price calculated successfully!",
-        "data": {
-            "totalPrice": "---"
-        }
-    })
-})
+  res.json({
+    success: true,
+    message: 'Total price calculated successfully!',
+    data: {
+      totalPrice: '---',
+    },
+  });
+});
 
 export const UserRoute = router;
-
