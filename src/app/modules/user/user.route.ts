@@ -20,35 +20,5 @@ router.put('/:userId', UserControllers.updateUserByUserIdController);
 // 5. Delete a user
 router.delete('/:userId', UserControllers.deleteUserController);
 
-// Order Routes (Bonus)
-
-// 6. Add New Product in Order
-router.patch('/:userId/orders', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Order created successfully!',
-    data: {},
-  });
-});
-
-// 7. Retrieve all orders for a specific user
-router.get('/:userId/orders', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Order fetched successfully!',
-    data: {},
-  });
-});
-
-// 8. Calculate Total Price of Orders for a Specific User
-router.get('/:userId/orders/total-price', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Total price calculated successfully!',
-    data: {
-      totalPrice: '---',
-    },
-  });
-});
 
 export const UserRoute = router;

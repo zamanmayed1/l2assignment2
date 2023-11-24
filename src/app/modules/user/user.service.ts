@@ -66,6 +66,8 @@ const deleteAUserService = async (userId: string) => {
     throw error;
   }
 };
+
+
 export const UserService = {
   createUserService,
   getAllUserService,

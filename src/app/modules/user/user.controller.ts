@@ -96,4 +96,5 @@ export const UserControllers = {
   getUserByUserIdController,
   updateUserByUserIdController,
   deleteUserController,
+  
 };
