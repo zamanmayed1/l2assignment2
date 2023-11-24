@@ -1,8 +1,9 @@
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcrypt';
-import User from './user.interface';
+import User, { UserModel } from './user.interface';
 
-const userSchema = new Schema({
+
+const userSchema = new Schema<User, UserModel>({
   userId: {
     type: Number,
     unique: true,
@@ -85,5 +86,11 @@ userSchema.pre('save', async function (next) {
     console.log(error);
   }
 });
+
+// Creating A Static Method
+userSchema.statics.isUserExist =async function (userId : string) {
+    const existingUser = await User.FindOne({userId})
+    return existingUser;
+}
 
 export const UserModel = model<User>('User', userSchema);
