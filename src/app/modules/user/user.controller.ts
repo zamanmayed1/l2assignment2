@@ -12,10 +12,15 @@ export const createUserController = async (req: Request, res: Response) => {
 
     if (error) {
       customError.handleValidationErrorResponse(res, error);
+    } else {
+      try {
+        const result = await UserService.createUserService(value);
+        const { password, ...withoutPass } = result.toObject();
+        customError.handleSuccessResponse(res, 'User created successfully!', withoutPass);
+      } catch (error) {
+        customError.handleInternalServerError(res);
+      }
     }
-    const result = await UserService.createUserService(value);
-    const { password, ...withoutPass } = result._doc;
-    customError.handleSuccessResponse(res, 'User created successfully!', withoutPass);
   } catch (err) {
     customError.handleInternalServerError(res);
   }
@@ -47,7 +52,7 @@ export const getUserByUserIdController = async (req: Request, res: Response) => 
   }
 };
 
-// 4. Update user information
+//  4. Update user information
 export const updateUserByUserIdController = async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
@@ -57,8 +62,12 @@ export const updateUserByUserIdController = async (req: Request, res: Response) 
     if (result === null) {
       customError.handleNotFoundResponse(res);
     } else {
-      const { password, ...withoutPass } = result._doc;
-      customError.handleSuccessResponse(res, 'User updated successfully!', withoutPass);
+      try {
+        const { password, ...withoutPass } = result.toObject();
+        customError.handleSuccessResponse(res, 'User updated successfully!', withoutPass);
+      } catch (error) {
+        customError.handleInternalServerError(res);
+      }
     }
   } catch (err) {
     customError.handleInternalServerError(res);

@@ -1,6 +1,6 @@
 import { Response } from "express";
 
- const handleValidationErrorResponse = (res: Response, error: unknown) => {
+ const handleValidationErrorResponse = (res: Response, error: any) => {
     res.status(400).json({
         success: false,
         message: 'Validation error',

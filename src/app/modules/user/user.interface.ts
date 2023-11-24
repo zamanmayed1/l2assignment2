@@ -1,4 +1,3 @@
-import { Model } from "mongoose";
 
 interface User {
   userId: number;
@@ -22,10 +21,6 @@ interface User {
     price: number;
     quantity: number;
   }[];
-}
-
-export interface UserModel extends Model<User> {
-  isUserExist(userId: string) : Promise<User | null>
 }
 
 
